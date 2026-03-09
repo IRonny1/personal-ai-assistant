@@ -10,12 +10,6 @@ module.exports = {
         {
             files: ['*.js', '*.ts'],
             rules: {
-                'react-hooks/exhaustive-deps': [
-                    'warn',
-                    {
-                        additionalHooks: 'useAutosave'
-                    }
-                ],
                 'import/no-anonymous-default-export': 'off',
                 'no-unused-vars': 'off',
                 'simple-import-sort/imports': [

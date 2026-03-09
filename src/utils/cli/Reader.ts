@@ -6,6 +6,8 @@ const rl = readline.createInterface({
 });
 
 class Reader {
+  rl = rl;
+
   async askQuestion(query: string): Promise<string> {
     return new Promise((resolve) => {
       rl.question(query, (answer) => {

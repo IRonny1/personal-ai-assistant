@@ -38,8 +38,12 @@ async function main() {
       if (e instanceof Error) {
         logger.error('Error occurred: ', e);
       }
+
+      reader.rl.close();
     }
   }
+
+  reader.rl.close();
 }
 
 main().catch((err) => {

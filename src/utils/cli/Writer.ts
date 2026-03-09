@@ -7,22 +7,35 @@ class Writer {
   }
 
   async processQueryWithStreaming(query: string, agent: ReActAgent['agent']): Promise<void> {
+    let lastWasReasoning = false;
+
     for await (const [token] of await agent.stream(
       { messages: [{ role: 'user', content: query }] },
       { streamMode: 'messages' }
     )) {
       if (!token.contentBlocks) continue;
-      const reasoning = token.contentBlocks.filter((b) => b.type === 'reasoning');
-      const text = token.contentBlocks.filter((b) => b.type === 'text');
 
-      if (reasoning.length) {
-        logger.info(`[thinking] ${reasoning[0].reasoning}`);
+      const reasoningBlocks = token.contentBlocks.filter((b: any) => b.type === 'reasoning');
+      const textBlocks = token.contentBlocks.filter((b: any) => b.type === 'text');
+
+      if (reasoningBlocks.length) {
+        if (!lastWasReasoning) {
+          process.stdout.write('\n\x1b[2m[thinking]: ');
+          lastWasReasoning = true;
+        }
+        process.stdout.write(reasoningBlocks[0].reasoning);
       }
 
-      if (text.length) {
-        logger.info(text[0].text);
+      if (textBlocks.length) {
+        if (lastWasReasoning) {
+          process.stdout.write('\x1b[0m\n\n');
+          lastWasReasoning = false;
+        }
+        process.stdout.write(textBlocks[0].text);
       }
     }
+
+    process.stdout.write('\n');
   }
 }
 

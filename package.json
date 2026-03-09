@@ -1,0 +1,28 @@
+{
+  "name": "personal-ai-assistant",
+  "version": "1.0.0",
+  "description": "An AI-powered CLI agent that transforms vague feature ideas and business requirements into structured, well-defined Jira tickets — saving developers and tech leads hours of ticket writing every week.",
+  "homepage": "https://github.com/IRonny1/personal-ai-assistant#readme",
+  "bugs": {
+    "url": "https://github.com/IRonny1/personal-ai-assistant/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/IRonny1/personal-ai-assistant.git"
+  },
+  "license": "ISC",
+  "author": "",
+  "type": "commonjs",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "devDependencies": {
+    "eslint": "^10.0.3",
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-plugin-prettier": "^5.5.5",
+    "eslint-plugin-simple-import-sort": "^12.1.1",
+    "eslint-plugin-unused-imports": "^4.4.1",
+    "prettier": "^3.8.1"
+  }
+}

@@ -1,4 +1,8 @@
 import { SYSTEM_PROMPT } from '../../prompts/system.prompt';
+import { createFileTool } from '../../tools/fs/files/createFile.tool';
+import { deleteFileTool } from '../../tools/fs/files/deleteFile.tool';
+import { readFileTool } from '../../tools/fs/files/readFile.tool';
+import { updateFileTool } from '../../tools/fs/files/updateFile.tool';
 import Writer from '../../utils/cli/Writer';
 
 import { ChatOpenAI } from '@langchain/openai';
@@ -11,7 +15,8 @@ class ReActAgent {
   });
   private readonly agent: any = createAgent({
     model: this.model.model,
-    systemPrompt: SYSTEM_PROMPT
+    systemPrompt: SYSTEM_PROMPT,
+    tools: [createFileTool, readFileTool, updateFileTool, deleteFileTool]
   });
 
   async processQuery(query: string): Promise<void> {
